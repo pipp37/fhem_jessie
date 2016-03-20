@@ -2,7 +2,8 @@
 This Image is debian 8 (jessie) based, includes some stuff and has several perl modules installed. It schould run out of the box.
 
 ## Features
-    * volumes: /opt/fhem /opt/yowsup-client
+    * volume /opt/fhem
+    * volume /opt/yowsup-config
     * Imagemagic
     * avrdude - firmware flash
     * Python - yowsup (separate volume) for whatsapp client - volume: /opt/yowsup-config

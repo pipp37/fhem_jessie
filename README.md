@@ -27,6 +27,8 @@ If NFS mount fails run with `--privileged` switch.
 
 Using  usb  needs to add the device to the run command.  Check usb devices on the host with ` lsusb `.
 
+` lsusb -v | grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null `
+
 Add for example: `  --device=/dev/bus/usb/001/002 ` .
 
 

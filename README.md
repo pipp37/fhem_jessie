@@ -1,5 +1,5 @@
 ## Docker Container for FHEM House-Automation-System - Full install
-This Image is debian 8 (jessie) based, includes some stuff and has several perl modules installed. It schould run out of the box.
+This Image is debian 8 (jessie) based, includes some stuff and has several perl modules installed. It should run out of the box.
 
 ## Features
     * volume /opt/fhem

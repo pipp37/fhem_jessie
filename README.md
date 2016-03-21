@@ -15,6 +15,7 @@ Website: http://www.fhem.de
 * cron daemon / at
 * NFS client and autofs /net
 * ssh root password: fhem!
+* USB tools for CUL hardware
 
 ### Run:
     docker run -d --name fhem --cap-add SYS_ADMIN -p 7072:7072 -p 8083:8083 -p 8084:8084 -p 8085:8085 -p 2222:2222 pipp37/fhem_jessie
@@ -22,6 +23,11 @@ Website: http://www.fhem.de
 If NFS mount fails run with `--privileged` switch.
 
     docker run -d --name fhem --privileged -p 7072:7072 -p 8083:8083 -p 8084:8084 -p 8085:8085 -p 2222:2222  pipp37/fhem_jessie
+
+
+Using  usb  needs to add the device to the run command.  Check usb devices on the host with ` lsusb `.
+Add in example: `  --device=/dev/bus/usb/001/002 ` .
+
 
 ### Commands:
 ##### Running containers:

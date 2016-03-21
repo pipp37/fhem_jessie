@@ -10,6 +10,7 @@ This Image is debian 8 (jessie) based, includes some stuff and has several perl 
     * Open-SSH daemon
     * Exposed ports: 2222/SSH, 7072 Fhem-raw, 8083-8085 Fhem Web
     * supervisord for fhem
+    * cron daemon / at
     * NFS client and autofs /net
     * ssh root password: fhem!
 

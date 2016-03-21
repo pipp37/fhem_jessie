@@ -19,7 +19,7 @@ This Image is debian 8 (jessie) based, includes some stuff and has several perl 
    
 If NFS mount fails run with `--privileged` switch.
 
-    docker run -d --name fhem --privileged -p 7072:7072 -p 8083:8083 -p 8084:8084 -p 8085:8085 -p 2222:2222
+    docker run -d --name fhem --privileged -p 7072:7072 -p 8083:8083 -p 8084:8084 -p 8085:8085 -p 2222:2222  pipp37/fhem_jessie
 
 ### Commands:
 ##### Running containers:

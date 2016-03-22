@@ -3,6 +3,8 @@ This Image is debian 8 (jessie) based, includes some stuff and has several perl 
 
 Website: http://www.fhem.de
 
+Fhem forum thread: https://forum.fhem.de/index.php/topic,51190.0.html
+
 ### Features
 * volume /opt/fhem
 * volume /opt/yowsup-config

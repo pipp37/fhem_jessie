@@ -51,9 +51,9 @@ Add for example: `  --device=/dev/bus/usb/001/002 ` .
     docker ps
 ##### Attach shell to container with:
     docker exec -it ContainerID /bin/bash
-##### Stop FHEM    
+##### Stop FHEM inside container
     supervisorctl stop fhem
-##### Start FHEM 
+##### Start FHEM inside container
     supervisorctl start fhem
     
 #### GUI FHEM:

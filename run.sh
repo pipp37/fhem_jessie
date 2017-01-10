@@ -3,7 +3,18 @@
 
 # check if ssh-keys exists 
 test -x /etc/ssh/ssh_host_dsa_key || dpkg-reconfigure openssh-server
-/etc/init.d/ssh start
+
+# sshd
+    # Create the PrivSep empty dir if necessary
+    if [ ! -d /var/run/sshd ]; then
+        mkdir /var/run/sshd
+        chmod 0755 /var/run/sshd
+    fi
+
+
+# /etc/init.d/ssh start 
+# ssh start with supervisord
+
 echo "Current directory : $(pwd)"
 echo "Environment RUNVAR: $RUNVAR"
 echo "There are $# arguments: $@"
@@ -15,18 +26,25 @@ if [ ! -d /var/run/fhem  ]; then
 fi
 
 if [ -z "$1" ]; then
-    echo "No argument supplied. Start supervisord"
-    /etc/init.d/dbus restart
+    echo "No argument supplied. Start supervisord and services."
+    /_cfg/volumedata2.sh write /opt/fhem 
+    /_cfg/volumedata2.sh write /opt/yowsup-config 
+	chown fhem /opt/fhem
+	chown fhem /opt/yowsup-config
+	
+	/etc/init.d/dbus start
 
     # nfsclient / rpcbind
     mkdir /run/sendsigs.omit.d
-    service rpcbind restart
+    service rpcbind start
 
     # autofs
-    service autofs restart
+    service autofs start
 
-    service avahi-daemon start
-    service cron restart
+    service avahi-daemon  start
+    service cron start
+	
+	# fhem start with supervisord 
     /usr/bin/supervisord
   else
     echo "Execute: $1 "

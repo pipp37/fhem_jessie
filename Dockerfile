@@ -1,3 +1,10 @@
+# Version 2 1/2017
+# Changes:
+# * added volumedata2.sh - extracts  data from a tgz when using empty host volumes
+# * added superivsord config for fhem running foreground 
+# * supervisor web at port 9001 export
+# * added service sshd  to supervisord
+
 FROM debian:jessie
 MAINTAINER Armin Pipp <armin@pipp.at>
 
@@ -65,11 +72,13 @@ RUN unzip -o master.zip && rm master.zip
 
 WORKDIR /opt
 # install fhem (debian paket)
-RUN wget http://fhem.de/fhem-5.7.deb
-RUN dpkg -i fhem-5.7.deb
+RUN wget https://debian.fhem.de/fhem.deb
+RUN dpkg -i fhem.deb
 # RUN rm fhem.deb
 RUN echo 'fhem    ALL = NOPASSWD:ALL' >>/etc/sudoers
 RUN echo 'attr global pidfilename /var/run/fhem/fhem.pid' >> /opt/fhem/fhem.cfg
+RUN echo 'define Wetter_Villach Weather 540859 1800 de'   >> /opt/fhem/fhem.cfg
+
 RUN apt-get -y --force-yes install supervisor 
 RUN mkdir -p /var/log/supervisor
 
@@ -90,18 +99,17 @@ RUN apt-get -y --force-yes install openssh-server && apt-get clean   \
 
 
 # NFS client / autofs
-RUN apt-get  -y --force-yes install nfs-common autofs && apt-get clean
+RUN apt-get  -y --force-yes install nfs-common autofs && apt-get clean && apt-get autoremove
 RUN echo "/net /etc/auto.net --timeout=60" >> /etc/auto.master
-
-RUN apt-get clean && apt-get autoremove
 
 ENV RUNVAR fhem
 WORKDIR /root
 
 # SSH / Fhem ports 
-EXPOSE 2222 7072 8083 8084 8085
+EXPOSE 2222 7072 8083 8084 8085 9001
 
-ADD run.sh /root/run.sh
+ADD run.sh /root/
+ADD runfhem.sh /root/
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir /_cfg  

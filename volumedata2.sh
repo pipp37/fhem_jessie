@@ -7,7 +7,7 @@
 # If files exist, no one are overwritten!
 #
 # usage:   ./volumedata2.sh <mode <dir
-# EXAMPLE: ./volumeda2.sh write /var/www
+# EXAMPLE: ./volumedata2.sh write /var/www
 #           modes: create = makes tgz file
 #                   write = extract from tgz
 ###########################################################################

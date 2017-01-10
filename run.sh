@@ -15,8 +15,10 @@ if [ ! -d /var/run/fhem  ]; then
 fi
 
 if [ -z "$1" ]; then
-    echo "No argument supplied. Start supervisord"
+    echo "No argument supplied. Start supervisord and services."
     /etc/init.d/dbus restart
+	/_cfg/volumedata2.sh write /opt/fhem 
+    /_cfg/volumedata2.sh write /opt/yowsup-config \
 
     # nfsclient / rpcbind
     mkdir /run/sendsigs.omit.d

@@ -22,6 +22,7 @@ fi
 
 DIR=`dirname $0`
 TGZDIR=/_cfg
+test -e $TGZDIR || mkdir -p $TGZDIR 
 
 # echo CFGdir=$DIR
 # echo TGZdir=$TGZDIR
@@ -44,14 +45,20 @@ case $1 in
 			 echo firstrun $2 already done, exit
 			exit
 		fi
-					
-		if [ -e $TGZ ] ; then
-			# -C /destdirroot  -k, --keep-old-files
-			# -k do not overwrite existsing files
-			echo extract $TGZ to $2 
-			tar -xzkf $TGZ -C / 
-			touch $TGZ.firstrun
-		fi
+		
+		# extract only if dir not empty
+		if 	[ "$(ls -A $2)" ]; then
+			echo "$2 not empty - no extraction, exit!"
+			exit
+			else 
+			if [ -e $TGZ ]; then
+				# -C /destdirroot  -k, --keep-old-files
+				# -k do not overwrite existsing files
+				echo extract $TGZ to $2 
+				tar -xzkf $TGZ -C / 
+				touch $TGZ.firstrun
+			fi
+		fi	
 		;;
 	*)
 	echo wrong parameter

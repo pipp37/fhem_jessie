@@ -6,8 +6,8 @@
 # This tool extracts files from the initial config process from a tar file.
 # If files exist, no one are overwritten!
 #
-# usage:   ./volumedata.sh <mode <dir
-# EXAMPLE: ./volumeda.sh write /var/www
+# usage:   ./volumedata2.sh <mode <dir
+# EXAMPLE: ./volumeda2.sh write /var/www
 #           modes: create = makes tgz file
 #                   write = extract from tgz
 ###########################################################################

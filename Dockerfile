@@ -97,6 +97,10 @@ RUN apt-get -y --force-yes install openssh-server && apt-get clean   \
  && /bin/rm  /etc/ssh/ssh_host_*
 # RUN dpkg-reconfigure openssh-server
 
+# dbi 
+RUN apt-get -y --force-yes install libdbd-pg-perl libdbi-perl libdbd-sqlite3-perl libclass-dbi-mysql-perl sqlite3 mysql-client libdbd-mysql libdbd-mysql-perl \
+ && apt-get clean
+
 
 # NFS client / autofs
 RUN apt-get  -y --force-yes install nfs-common autofs && apt-get clean && apt-get autoremove
